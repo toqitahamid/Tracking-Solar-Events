@@ -292,7 +292,7 @@ def compare_time(previous_time, start_time):
     past = datetime.strptime(previous_time, "%Y-%m-%dT%H:%M:%S").date()
     return past < present
 
-past_radious = 0.0
+#past_radious = 0.0
 radius = 0
 previous_time = '2015-01-01 00:00:00'
 for res in results:
@@ -303,7 +303,7 @@ for res in results:
         
         #download image and get radius ('RSUN_OBS') from the downloaded image
         radius, filepath = get_radius(start_time)
-        past_radious = radius
+        #past_radious = radius
         
         #draw limb on downloaded image
         draw_limb(filepath, radius)
@@ -384,7 +384,9 @@ gf_grouped = gf.groupby('frm_specificid')
 
 #gf_grouped['frm_specificid'].agg([np.sum])
 
-
+grouped_data_save_directory = 'grouped_data/AR/'
+if not os.path.isdir(grouped_data_save_directory):
+    os.makedirs(grouped_data_save_directory)
 
 for i, g in gf_grouped:
     g.to_csv('grouped_data/AR/' + '{}.csv'.format(i), header=True)
